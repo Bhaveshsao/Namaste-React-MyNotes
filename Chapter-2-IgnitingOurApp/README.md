@@ -725,5 +725,3 @@ dist\index.13c0df5c.js     192.22 kB    717ms
 ### Next Steps
 - Verify the build output by opening `dist/index.html` in a browser.
 - Deploy the `dist` folder to your preferred hosting service or server.
-
-```
