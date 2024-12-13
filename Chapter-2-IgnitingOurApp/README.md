@@ -457,7 +457,7 @@ JavaScript (text/javascript): This is the most common value used for the type at
 
 ---------------------------------------------
 
-```markdown
+
 # Project Assignment
 
 ## 1. Adding Scripts for "start" and "build" in `package.json`.
