@@ -457,9 +457,10 @@ JavaScript (text/javascript): This is the most common value used for the type at
 
 ---------------------------------------------
 
-#Project Assignment
+```markdown
+# Project Assignment
 
-## 1. **Adding Scripts for "start" and "build" in `package.json`
+## 1. Adding Scripts for "start" and "build" in `package.json`.
 
 ### What Are Scripts in `package.json`?
 - **Scripts**: Commands defined in the `scripts` section of the `package.json` file.
@@ -491,7 +492,7 @@ JavaScript (text/javascript): This is the most common value used for the type at
 
 ---
 
-## 2. **Running the Scripts**
+## 2. Running the Scripts
 
 ### How to Run the `start` Script?
 1. Ensure your `package.json` file contains the `start` script.
@@ -511,7 +512,7 @@ JavaScript (text/javascript): This is the most common value used for the type at
 
 ---
 
-## 3. **Building a Production Version Using `parcel build`**
+## 3. Building a Production Version Using `parcel build`
 
 ### What Is a Production Build?
 - A production build is an optimized version of your code, ready for deployment to a live environment.
@@ -541,7 +542,7 @@ npx parcel build index.html
 
 ---
 
-## 4. **Understanding the Key Differences**
+## 4. Understanding the Key Differences
 
 ### Development Mode vs Production Mode
 | Feature                  | Development Mode (`start`)           | Production Mode (`build`)                 |
@@ -553,7 +554,7 @@ npx parcel build index.html
 
 ---
 
-## 5. **Frequently Asked Questions**
+## 5. Frequently Asked Questions
 
 ### Why Do We Use `npm start` and `npm run build` Instead of `npx` Commands?
 - **`npm start`** and **`npm run build`** are shortcuts for frequently used commands defined in the `scripts` section of `package.json`.
@@ -563,7 +564,7 @@ npx parcel build index.html
 
 ### What Is the Difference Between `npx` and `npm`?
 | Tool   | Purpose                                                                 |
-|--------|-------------------------------------------------------------------------|
+|--------|-------------------------------------------------------------------------| 
 | `npx`  | Runs npm packages directly without installing them globally.           |
 | `npm`  | Manages project dependencies and executes `package.json` scripts.      |
 
@@ -577,7 +578,7 @@ npx parcel build index.html
 
 ---
 
-## 6. **Key Takeaways**
+## 6. Key Takeaways
 
 1. **Add Scripts to `package.json`**:
    - Automates Parcel commands for easier usage.
@@ -607,5 +608,122 @@ npx parcel build index.html
 4. **Production Build Output**:
    - Check the `dist` folder for the production-ready files.
 
-By following this guide, you can confidently add and use Parcel scripts for `start` and `build`, ensuring your project is set up for efficient development and deployment.
+---
+
+## Equivalence of Commands
+
+### **`npm start`**
+- When you add the `start` script in `package.json` like this:
+  ```json
+  {
+    "scripts": {
+      "start": "parcel index.html"
+    }
+  }
+  ```
+- Running `npm start` is equivalent to running:
+  ```bash
+  npx parcel index.html
+  ```
+- **Why?**: `npm start` automatically looks for the `start` script in `package.json` and executes it.
+
+---
+
+### **`npm run build`**
+- When you add the `build` script in `package.json` like this:
+  ```json
+  {
+    "scripts": {
+      "build": "parcel build index.html"
+    }
+  }
+  ```
+- Running `npm run build` is equivalent to running:
+  ```bash
+  npx parcel build index.html
+  ```
+- **Why?**: `npm run build` executes the `build` script defined in `package.json`.
+
+---
+
+## Why Use `npm start` and `npm run build` Instead of `npx` Commands?
+
+1. **Convenience**:
+   - Instead of typing the full Parcel command every time (`npx parcel ...`), you can simply use `npm start` or `npm run build`.
+
+2. **Standardization**:
+   - If you work in a team, adding scripts like `start` and `build` in `package.json` ensures everyone runs the same commands. It reduces the chance of errors caused by variations in manually typed commands.
+
+3. **Customizability**:
+   - You can add additional options to the scripts in `package.json` if needed, and everyone on the team will benefit from those changes automatically.
+
+---
+
+### Summary
+- **`npm start`** replaces `npx parcel index.html`.
+- **`npm run build`** replaces `npx parcel build index.html`.
+- Scripts in `package.json` provide a standardized, convenient way to run commands for your project.
+
+
+##2. Build a production version of your code using `parcel build`.
+A: ```markdown
+# Building a Production Version Using `parcel build`
+
+## 2. Build a Production Version of Your Code Using `parcel build`
+
+### Command Executed
+Ran the command:
+```bash
+npm run build
+```
+
+### Terminal Output
+```plaintext
+PS C:\Users\ASUS\Desktop\Namaste-React-Bhavesh> npm run build
+
+> namaste-react-bhavesh@1.0.0 build
+> parcel build index.html
+
+✨ Built in 2.95s
+
+dist\index.html                456 B    334ms
+dist\index.234596bb.css         95 B    202ms
+dist\index.13c0df5c.js     192.22 kB    717ms
+```
+
+---
+
+### Explanation of the Output
+
+1. **✨ Built in 2.95s**:
+   - The production build was successfully completed in 2.95 seconds.
+
+2. **Files Generated in the `dist` Folder**:
+   - **`dist\index.html`**:
+     - Size: `456 B`
+     - Time Taken: `334ms`
+     - Represents the optimized HTML file for the project.
+   - **`dist\index.234596bb.css`**:
+     - Size: `95 B`
+     - Time Taken: `202ms`
+     - Represents the optimized CSS file.
+   - **`dist\index.13c0df5c.js`**:
+     - Size: `192.22 kB`
+     - Time Taken: `717ms`
+     - Represents the optimized and minified JavaScript file.
+
+---
+
+### Key Notes
+
+- The `dist` folder contains the production-ready files for deployment.
+- The build process:
+  - Minifies and optimizes files (HTML, CSS, JavaScript).
+  - Reduces the file size for faster loading in the browser.
+- You can now deploy the `dist` folder to your production server.
+
+### Next Steps
+- Verify the build output by opening `dist/index.html` in a browser.
+- Deploy the `dist` folder to your preferred hosting service or server.
+
 ```
