@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 // <div id="parent">
 //     <div id="child">
 //         <h1>I am from h1 tag</h1>
@@ -16,12 +19,12 @@
 
 const parent = React.createElement("div", { id: "parent" }, [
   React.createElement("div", { id: "child1" }, [
-    React.createElement("h1", {}, "I am from h1 inside child 1"),
-    React.createElement("h2", {}, "I am from h2 inside child 1"),
+    React.createElement("h1", {}, "I am h1 tag inside child 1"),
+    React.createElement("h2", {}, "I am h2 tag inside child 1"),
   ]),
   React.createElement("div", { id: "child2" }, [
-    React.createElement("h1", {}, "I am from h1 inside child 2"),
-    React.createElement("h2", {}, "I am from h2 inside child 2"),
+    React.createElement("h1", {}, "I am h1 tag inside child 2"),
+    React.createElement("h2", {}, "I am h2 taginside child 2"),
   ]),
 ]); 
 
