@@ -23,16 +23,16 @@ Before coding, planning ensures clarity and scalability. Here’s the visual str
 
 ```
 +----------------------------------+
-|             Header                       |
+|             Header               |
 |  [Logo]           [Nav Items]    |
 +----------------------------------+
-|              Body                         |
-|  [Search Bar]                         |
-|  [Restaurant Cards]               |
-|    [Image, Title, Rating]         |
+|              Body                |
+|  [Search Bar]                    |
+|  [Restaurant Cards]              |
+|    [Image, Title, Rating]        |
 +----------------------------------+
-|             Footer                        |
-|  [Copyright, Links, Contact] |
+|             Footer               |
+|  [Copyright, Links, Contact]     |
 +----------------------------------+
 ```
 
