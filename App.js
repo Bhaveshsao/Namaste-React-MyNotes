@@ -1,61 +1,102 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import swiggy from "./Chapter-4-TalkIsCheapShowMeTheCode/Codes/Sources/swiggy.png";
+import logo from "./Chapter-4-TalkIsCheapShowMeTheCode/Codes/Sources/logo.png";
 
-// const span = <span>This is a span tag</span>;
+/*
+Heading
+ -Logo(on left most side)
+ -Nav Items(on right most side)
+Body
+ -Search Bar
+ -Restraunt Card Container
+  -Restraunt Cards
+Footer
+ -Copyright
+ -Links
+ -Address
+ -Contact
+*/
 
-// const heading = (
-//   <h1 id="heading" className="head" tabIndex="5">
-//     {span}
-//     <h1>Namaste React using JSX Syntax</h1>
-//   </h1>
-// );
-
-// const TitleComponent = () => (
-//   <h1 id="heading" className="head" tabIndex="5">
-//     Title Component
-//   </h1>
-// );
-
-// const HeadingComponent = () => (
-//   <div id="container">
-//     {heading}
-//     <TitleComponent />
-//     <h1 id="heading" className="head" tabIndex="5">
-//       Namaste React Functional Component
-//     </h1>
-//   </div>
-// );
-
-const TitleComponent = ({ children }) => (
-    <div>
-        <h1>Hello from Title Component</h1>
-        {children}
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img className="logo" src={logo} />
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
     </div>
-);
+  );
+};
 
-const ChildComponent = () => <h2>Hello from Child Component</h2>;
+const resList = [
+  {
+    id: 1,
+    resName: "Meghana Foods",
+    cuisine: "Biryani, North Indian",
+    rating: "4.4",
+    time: "38 minutes",
+  },
+  {
+    id: 2,
+    resName: "KFC",
+    cuisine: "Chicken Wings, Burger",
+    rating: "4.7",
+    time: "45 minutes",
+  },
+  {
+    id: 3,
+    resName: "Dominos",
+    cuisine: "Pizza, Italian",
+    rating: "4.2",
+    time: "30 minutes",
+  },
+];
 
-const App = () => {
-    const jsxVariable = <h3>This is JSX from a variable</h3>;
+const RestaurantCard = (props) => {
+  const { resName, cuisine, rating, time } = props?.resData;
+  return (
+    <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+      <img className="res-logo" alt="res-logo" src={swiggy} />
+      <h3>{resName}</h3>
+      <h4>{cuisine}</h4>
+      <h4>{rating} stars</h4>
+      <h4>{time}</h4>
+    </div>
+  );
+};
 
-    return (
-        <div>
-            {/* Using TitleComponent as a variable */}
-            {jsxVariable}
+const Body = () => {
+  return (
+    <>
+      <div className="search">Search</div>
+      <div className="res-container">
+        {resList.map((restaurant) => (
+          <RestaurantCard
+          key={restaurant.id}  
+          resData={restaurant}
+          />
+        ))}
+      </div>
+    </>
+  );
+};
 
-            {/* Using TitleComponent as a self-closing component */}
-            <TitleComponent />
-
-            {/* Using TitleComponent as a wrapper with children */}
-            <TitleComponent>
-                <ChildComponent />
-            </TitleComponent>
-        </div>
-    );
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Body />
+    </div>
+  );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
-
-
-
+root.render(<AppLayout />);
