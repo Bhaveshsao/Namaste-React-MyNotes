@@ -1,6 +1,5 @@
-# Chapter 4 Part 1: Let’s Get Hooked
+# Chapter 5: Let’s Get Hooked
 
----
 
 ### **Recap from the Previous Episode**
 
