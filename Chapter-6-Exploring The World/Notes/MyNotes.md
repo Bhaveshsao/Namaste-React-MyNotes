@@ -877,3 +877,398 @@ export default Header;
    - Use logs strategically to understand how often components re-render and why.
 
 ---
+### **Adding Search Functionality to Our React App**
+
+---
+
+#### **Step 1: Initial Setup Without Binding**
+
+Let’s start with a basic implementation of the search bar. At this stage:
+1. We add an **input field** for typing the search query.
+2. A **button** is used to trigger the search.
+
+Here’s the initial code:
+```javascript
+<div className="search">
+  <input type="text" className="search-box" />
+  <button className="searchBtn" onClick={() => console.log("Search button clicked!")}>
+    Search
+  </button>
+</div>
+```
+
+- **Expected Behavior**: When the user types in the input field, the text should appear, and clicking the button should log "Search button clicked!" to the console.
+- **Actual Behavior**: The input field works fine (users can type into it), but the value typed into the input field is not accessible in our code.
+
+---
+
+#### **Step 2: Linking Input Field to a Variable**
+
+To make the search bar functional, we link the input field to a variable (`searchRes`) so we can use the typed text. Here’s the modified code:
+```javascript
+let searchRes = "";
+
+<div className="search">
+  <input
+    type="text"
+    className="search-box"
+    onChange={(e) => {
+      searchRes = e.target.value; // Update the variable with the user's input
+    }}
+  />
+  <button className="searchBtn" onClick={() => console.log(searchRes)}>
+    Search
+  </button>
+</div>;
+```
+
+- **Expected Behavior**: When the user types in the input field, `searchRes` is updated, and clicking the button logs the current value of `searchRes`.
+- **Actual Behavior**: The input works, and the value of `searchRes` is logged correctly. But the value displayed in the input field is **not synchronized** with the variable after typing.
+
+---
+
+### **Issues with the Above Approach**
+
+1. **Local Variable Limitation**:
+   - React doesn’t track changes to local variables like `searchRes`. These variables are not part of React’s state, so updates don’t trigger re-renders.
+   - As a result, the UI and the variable holding the data are not synchronized.
+
+2. **What Happens on Re-render?**
+   - React re-renders components whenever there’s a state update.
+   - Since `searchRes` is a local variable, it resets to its initial value (`""`) after every re-render, losing the typed input.
+
+---
+
+#### **Step 3: Solving the Problem by Using a State Variable**
+
+To fix the above issues, we replace the local variable (`searchRes`) with a **state variable**. React’s state ensures:
+1. The UI stays in sync with the application data.
+2. Updates to the state automatically trigger re-renders, keeping the DOM updated.
+
+Here’s the updated code:
+```javascript
+import { useState } from "react";
+
+const SearchBar = () => {
+  const [searchRes, setSearchRes] = useState(""); // State variable for the search input
+
+  return (
+    <div className="search">
+      <input
+        type="text"
+        className="search-box"
+        value={searchRes} // Bind the input field to the state variable
+        onChange={(e) => setSearchRes(e.target.value)} // Update the state as the user types
+      />
+      <button className="searchBtn" onClick={() => console.log(searchRes)}>
+        Search
+      </button>
+    </div>
+  );
+};
+```
+
+---
+
+#### **Why Binding is Necessary**
+1. **Controlled Component**:
+   - By setting the `value` attribute to the state variable (`searchRes`), the input field becomes a **controlled component**.
+   - React controls its value, ensuring synchronization between the UI and the state.
+
+2. **Two-Way Data Binding**:
+   - The `value` attribute binds the input field to `searchRes`.
+   - The `onChange` handler updates `searchRes` whenever the user types.
+
+3. **Re-renders with State Updates**:
+   - When `setSearchRes` is called, React re-renders the component, reflecting the updated value in the input field.
+
+---
+
+#### **What Happens During Typing?**
+1. The user types a character.
+2. The `onChange` event is triggered, passing the input value (`e.target.value`) to the `setSearchRes` function.
+3. `searchRes` is updated, and React re-renders the component.
+4. The new value of `searchRes` is displayed in the input field via the `value` attribute.
+
+---
+
+#### **Step 4: Filtering the Restaurant List**
+
+Now that the search input works, we use its value to filter the list of restaurants.
+
+1. **Initial State Setup**:
+   - `resList`: Holds the full dataset fetched from the API.
+   - `renderRes`: Holds the filtered dataset for rendering.
+
+```javascript
+const [resList, setResList] = useState([]);
+const [renderRes, setRenderRes] = useState([]);
+```
+
+2. **Filter Logic**:
+   - Use the `filter()` method to find restaurants whose names match the search query.
+   - Convert both the search query and restaurant names to lowercase for case-insensitive matching.
+
+```javascript
+<button
+  onClick={() => {
+    const filteredRes = resList.filter((res) =>
+      res.info.name.toLowerCase().includes(searchRes.toLowerCase())
+    );
+    setRenderRes(filteredRes); // Update the rendered list
+  }}
+>
+  Search
+</button>;
+```
+
+---
+
+#### **Step 5: Handling Subsequent Searches**
+
+**Problem**:
+- Filtering directly on `resList` modifies the original dataset. After the first search, the next search operates on already-filtered data, causing issues.
+
+**Solution**:
+1. Always preserve the original dataset in `resList`.
+2. Use a separate state variable (`renderRes`) for filtered data.
+
+```javascript
+const fetchData = async () => {
+  const data = await fetch(SWIGGY_URL);
+  const json = await data.json();
+  const restaurants =
+    json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+  setResList(restaurants); // Store the original dataset
+  setRenderRes(restaurants); // Initialize the rendered dataset
+};
+```
+
+---
+
+#### **Final Code**
+
+```javascript
+// import listOfRestaurant from "../utils/mocks/resList";
+import { useEffect, useState } from "react";
+import RestaurantCard from "./RestaurantCard"; // Component to display individual restaurant details
+import Shimmer from "./Shimmer"; // Shimmer effect displayed while data is loading
+import { SWIGGY_URL } from "../utils/constants"; // API URL for fetching restaurant data
+
+const Body = () => {
+  // State to store the full list of restaurants fetched from the API to apply any filters
+  const [resList, setResList] = useState([]);
+
+  // State to store the list of restaurants to be rendered
+  const [renderRes, setRenderRes] = useState([]);
+
+  // State to store the user's input in the search bar
+  const [searchRes, setSearchRes] = useState("");
+
+  // Fetch restaurant data from the API when the component is first rendered
+  useEffect(() => {
+    fetchData();
+  }, []); // Empty dependency array ensures this runs only once
+
+  const fetchData = async () => {
+    // Fetch data from the Swiggy API
+    const data = await fetch(SWIGGY_URL);
+    const json = await data.json();
+
+    // Parse the required restaurant data from the API response
+    const restaurants =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [];
+
+    // Set both full list and initial rendered list with fetched data
+    setResList(restaurants);
+    setRenderRes(restaurants);
+  };
+
+  return resList.length === 0 ? (
+    // Show the Shimmer component while data is being fetched
+    <Shimmer />
+  ) : (
+    <>
+      <div className="filter">
+        {/* Search Bar Section */}
+        <div className="search">
+          {/* Input field for entering search text */}
+          <input
+            type="text"
+            className="search-box"
+            value={searchRes}
+            onChange={(e) => {
+              setSearchRes(e.target.value); // Update the search query state as the user types
+            }}
+          />
+          <button
+            className="searchBtn"
+            onClick={() => {
+              // Filter the restaurants based on the search query
+              const filteredRes = resList.filter((res) =>
+                res.info.name.toLowerCase().includes(searchRes.toLowerCase())
+              );
+              setRenderRes(filteredRes); // Update the rendered list with search results
+            }}
+          >
+            Search
+          </button>
+        </div>
+
+        {/* Filter Button for Top Rated Restaurants */}
+        <button
+          className="filter-btn"
+          onClick={() => {
+            // Filter restaurants with average ratings of 4 or above
+            const filteredRes = resList.filter(
+              (res) => res.info.avgRating >= 4
+            );
+            setRenderRes(filteredRes); // Update the rendered list with top-rated restaurants
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
+
+      {/* Section to Display the List of Restaurant Cards */}
+      <div className="res-container">
+        {renderRes.map((restaurant) => (
+          // Render each restaurant's details using the RestaurantCard component
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+        ))}
+      </div>
+    </>
+  );
+};
+
+export default Body;
+```
+
+---
+
+### **Key Takeaways**
+1. **Controlled Components** ensure React manages input fields, keeping them synchronized with state variables.
+2. **Two-Way Data Binding** with `value` and `onChange` makes inputs dynamic and interactive.
+3. **Preserving Original Data** avoids issues with repeated filtering.
+4. **React State** triggers re-renders, allowing real-time updates in the UI.
+
+---
+
+## Note
+
+### **Understanding `value={searchRes}` vs. `e.target.value`**
+
+---
+
+#### **1. `value={searchRes}`**
+- This binds the input field’s value to the **state variable** `searchRes` in React.
+- It makes the input field a **controlled component**.
+  - React **controls** what value is displayed in the input field by synchronizing it with the `searchRes` state.
+- Changes to `searchRes` automatically update the input’s displayed value because React re-renders the component whenever `searchRes` is updated.
+
+---
+
+#### **2. `e.target.value`**
+- This refers to the **current value** of the input field, fetched directly from the DOM.
+- It is accessed during an event, such as `onChange`, and provides the most recent user-typed value.
+- This value is used to update the `searchRes` state by calling `setSearchRes(e.target.value)`.
+
+---
+
+### **How They Work Together**
+
+1. **`value={searchRes}`** ensures the displayed value in the input is always synchronized with the state variable.
+2. **`e.target.value`** captures the user-typed value from the DOM in real-time and updates the state (`searchRes`).
+3. React re-renders the component, updating the displayed value (`value={searchRes}`) in the input field.
+
+---
+
+### **Chronological Flow When You Type Something**
+
+Here’s a step-by-step breakdown of what happens **internally** when you type into the input field:
+
+---
+
+#### **1. Initial Render**
+- The input field is rendered with its `value` bound to the `searchRes` state.
+- Initially, `searchRes` is set to an empty string (`useState("")`), so the input field is empty.
+
+---
+
+#### **2. User Types a Character**
+- Example: The user types the letter **"A"**.
+- The `onChange` event is triggered because the input value changes.
+
+---
+
+#### **3. `onChange` Event Fires**
+- The `onChange` handler runs:
+  ```javascript
+  onChange={(e) => setSearchRes(e.target.value)}
+  ```
+  - `e.target.value` retrieves the current input value from the DOM, which is now `"A"`.
+  - `setSearchRes("A")` updates the `searchRes` state with the value `"A"`.
+
+---
+
+#### **4. React Updates the State**
+- React’s `setSearchRes` triggers a **state update**:
+  - The `searchRes` variable in memory is updated to `"A"`.
+  - React schedules a **re-render** of the component because the state (`searchRes`) has changed.
+
+---
+
+#### **5. React Re-renders the Component**
+- During the re-render:
+  - React recalculates the JSX for the input field.
+  - The `value` attribute of the input field (`value={searchRes}`) is now bound to the updated `searchRes` value, which is `"A"`.
+- React compares the new Virtual DOM with the old one:
+  - It detects that the `value` attribute of the input field has changed.
+  - React updates the real DOM to reflect this change.
+
+---
+
+#### **6. Display Updates**
+- The input field now displays `"A"`, as the value is synchronized with the updated `searchRes` state.
+
+---
+
+### **What Happens for Every Keystroke?**
+1. **The user types a character.**
+2. `onChange` fires and captures the new input value via `e.target.value`.
+3. The state variable (`searchRes`) is updated using `setSearchRes`.
+4. React re-renders the component:
+   - The input field’s `value` is updated to reflect the new `searchRes`.
+5. The updated value is displayed in the input field.
+
+This loop repeats for every keystroke.
+
+---
+
+### **How Does This Make the Input a Controlled Component?**
+- The input’s displayed value is **entirely controlled by React’s state** (`searchRes`).
+- Without `value={searchRes}`, the input would be an **uncontrolled component**, where the DOM itself manages the value, independent of React.
+
+---
+
+### **Key Difference Between `value={searchRes}` and `e.target.value`**
+| **Aspect**             | **`value={searchRes}`**                            | **`e.target.value`**                        |
+|-------------------------|----------------------------------------------------|---------------------------------------------|
+| **Source**              | State variable (`searchRes`)                      | DOM input element (`e.target.value`)        |
+| **Purpose**             | Binds the input value to React state              | Captures the user-typed value in real-time |
+| **Scope**               | Controlled by React and synchronized with state   | Specific to the event triggered by user input |
+| **Updates State?**      | No                                                | Yes, used to update the state via `setSearchRes` |
+
+---
+
+### **Key Takeaways**
+1. **`value={searchRes}`** ensures the input’s value is always in sync with React’s state.
+2. **`e.target.value`** captures the latest user input directly from the DOM.
+3. React’s state and event system work together to make the input field dynamic, responsive, and part of React’s controlled component architecture.
+
+---
+
+### **Summary**
+
+When you type into the input field, React uses a state variable (`searchRes`) to keep track of the text you type. The `value={searchRes}` ensures that whatever is stored in the state is displayed in the input field, making it a **controlled component**. As you type, the `onChange` event is triggered, which grabs the latest text you typed (`e.target.value`) and updates the state using `setSearchRes`. React then re-renders the component, updating the input field's value with the new state. This cycle of capturing user input, updating the state, and re-rendering ensures that the input field is always synchronized with React’s state, making it dynamic and responsive.
