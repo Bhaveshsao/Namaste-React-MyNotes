@@ -1,6 +1,6 @@
 # Chapter 06 - Exploring the world
 
-### Q: What is `Microservice`?
+## Q: What is `Microservice`?
 A: Microservices, also known as the microservice architecture, are a software development approach where applications are structured as a collection of small, independent, and loosely coupled services. Each service is designed to perform a specific function and operates as a standalone unit with its own codebase, database, and deployment pipeline. These services communicate with each other through well-defined APIs, typically over lightweight protocols like HTTP or messaging queues.
 
 ### Key Characteristics of Microservices:
@@ -61,7 +61,7 @@ Microservices are commonly used in large-scale, complex applications like e-comm
 
 ---
 
-### Q: What is `Monolith architecture`?
+## Q: What is `Monolith architecture`?
 A: **Monolithic architecture** is a traditional software development model where an application is built as a single, unified unit. All the components of the application, including the user interface, business logic, and data access layers, are tightly integrated into a single codebase and deployed together. In this architecture, the application functions as one large entity, with all services and features interconnected.
 
 ---
@@ -140,7 +140,7 @@ In conclusion, while monolithic architecture is easier to implement and manage f
 
 ---
 
-### Q: What is the difference between `Monolith` and `Microservice`?
+## Q: What is the difference between `Monolith` and `Microservice`?
 A: *Difference Between Monolithic and Microservices Architecture*
 
 | **Characteristic**        | **Monolithic Architecture**                                  | **Microservices Architecture**                          |
@@ -187,7 +187,7 @@ A: *Difference Between Monolithic and Microservices Architecture*
 
 ---
 
-### Q: Why do we need `useEffect Hook`?
+## Q: Why do we need `useEffect Hook`?
 A: The `useEffect` hook is a crucial feature of React used to manage **side effects** in functional components. Side effects are operations that occur outside the React rendering process, such as fetching data, interacting with the DOM, or setting up subscriptions. Without `useEffect`, handling such operations in functional components would be cumbersome.
 
 ---
@@ -313,7 +313,7 @@ export default MyComponent;
 
 ---
 
-### Q: What is `Optional Chaining`?
+## Q: What is `Optional Chaining`?
 A: **Optional Chaining** is a JavaScript feature introduced in ES2020 that provides a safe and concise way to access object properties, call methods, or work with arrays that might be `null` or `undefined`. It prevents runtime errors like `"TypeError: Cannot read property 'x' of undefined"` by returning `undefined` if the accessed property or method does not exist.
 
 ---
@@ -420,7 +420,7 @@ A: **Optional Chaining** is a JavaScript feature introduced in ES2020 that provi
 
 ---
 
-### Q: What is `Shimmer UI`?
+## Q: What is `Shimmer UI`?
 A: **Shimmer UI** is a design technique used to improve the user experience during content loading by showing animated placeholders that resemble the structure of the content being loaded. Instead of displaying blank spaces or simple loading spinners, Shimmer UI provides a visually appealing and intuitive way to indicate that content is being fetched.
 
 ---
@@ -514,7 +514,7 @@ This Shimmer UI enhances the user experience during loading by providing a clean
 
 ---
 
-### Q: What is the difference between `JS expression` and `JS statement`?
+## Q: What is the difference between `JS expression` and `JS statement`?
 A: **Difference between JavaScript Expression and JavaScript Statement**
 
 #### **JavaScript Expression**
@@ -595,7 +595,7 @@ By understanding the distinction, you can structure JavaScript and JSX code effe
 
 ---
 
-### Q: What is `Conditional Rendering`? explain with a code example.
+## Q: What is `Conditional Rendering`? explain with a code example.
 A: **Conditional rendering** in React refers to the practice of displaying different content, components, or UI elements based on certain conditions or states. It enables developers to create dynamic user interfaces by rendering content only when specific conditions are met.
 
 React achieves this using JavaScript's conditional statements like:
@@ -709,7 +709,7 @@ export default App;
 
 ---
 
-### Q What is `CORS`?
+## Q What is `CORS`?
 A: **CORS (Cross-Origin Resource Sharing)** is an HTTP-header-based mechanism that enables a server to specify which origins (domains, protocols, or ports) are allowed to access its resources. It provides a way for servers to handle cross-origin requests securely.
 
 ---
@@ -796,7 +796,7 @@ CORS is a critical mechanism for modern web applications that need to interact w
 
 ---
 
-### Q What is `async` and `await`?
+## Q What is `async` and `await`?
 A: `async` and `await` are modern JavaScript features introduced in ECMAScript 2017 (ES8) to simplify working with asynchronous code. They make asynchronous programming easier to read and write by allowing us to handle promises in a more synchronous-like manner.
 
 ---
@@ -909,7 +909,7 @@ fetchData();
 
 ---
 
-### Q What is the use of `const json = await data.json();` in `getRestaurants()`?
+## Q What is the use of `const json = await data.json();` in `getRestaurants()`?
 A: The line `const json = await data.json();` is crucial for working with API responses that return data in JSON format. It performs the following functions:
 
 ---
