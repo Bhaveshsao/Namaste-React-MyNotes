@@ -181,7 +181,9 @@ A: *Difference Between Monolithic and Microservices Architecture*
 - **Monolithic** is suitable for smaller applications with simpler requirements but struggles as complexity and size grow.  
 - **Microservices** offer scalability, flexibility, and resilience, making them ideal for large, complex systems but come with added challenges of inter-service communication and deployment complexity.
 
-![image](https://github.com/ReddyDivya/rd-namaste-react-notes/assets/34181144/b0a72a0b-29f0-4f85-8b72-7f2e03608e4d)
+![image](https://github.com/Bhaveshsao/Namaste-React-MyNotes/blob/main/Chapter-6-Exploring%20The%20World/Assignment/Images/Monolith%20vs%20Microservice.png?raw=true)
+
+![image](https://github.com/Bhaveshsao/Namaste-React-MyNotes/blob/main/Chapter-6-Exploring%20The%20World/Assignment/Images/Monolith-Microservices.png?raw=true)
 
 ---
 
