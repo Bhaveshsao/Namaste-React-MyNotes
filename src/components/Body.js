@@ -1,4 +1,5 @@
 // import listOfRestaurant from "../utils/mocks/resList";
+import React from "react";
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard"; // Component to display individual restaurant details
 import Shimmer from "./Shimmer"; // Shimmer effect displayed while data is loading
