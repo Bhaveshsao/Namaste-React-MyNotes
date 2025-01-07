@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard"; // Component to display individual restaurant details
 import Shimmer from "./Shimmer"; // Shimmer effect displayed while data is loading
 import { SWIGGY_URL } from "../utils/constants"; // API URL for fetching restaurant data
+import { Link } from "react-router-dom";
 
 const Body = () => {
   // State to store the full list of restaurants fetched from the API to apply any filters
@@ -85,7 +86,7 @@ const Body = () => {
       <div className="res-container">
         {renderRes.map((restaurant) => (
           // Render each restaurant's details using the RestaurantCard component
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}><RestaurantCard resData={restaurant} /></Link> 
         ))}
       </div>
     </>
