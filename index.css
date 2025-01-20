@@ -344,3 +344,113 @@
   font-size: 0.8rem;
   color: #888;
 }
+
+/* ========== About Component ========== */
+
+/* Container Styling */
+.about-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+/* Main Header Styling */
+.about-container h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Sub-header Styling */
+.about-container h3 {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+/* UserClass Component Wrapper */
+.user-wrapper {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+
+/* ========== User Card Container ========== */
+.user-card {
+  max-width: 350px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect */
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile Image */
+.user-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #007bff;
+}
+
+/* Name */
+.user-card h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Location */
+.user-card h4 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Link Styling */
+.user-card h4 a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.user-card h4 a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  .user-card {
+    padding: 15px;
+  }
+
+  .user-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-card h2 {
+    font-size: 20px;
+  }
+
+  .user-card h4 {
+    font-size: 16px;
+  }
+}
