@@ -1,0 +1,456 @@
+/* ========== HEADER STYLES ========== */
+
+/* Header container */
+.header {
+  display: flex; /* Align logo and nav items side by side */
+  justify-content: space-between; /* Space between logo and nav items */
+  align-items: center; /* Center align items vertically */
+  padding: 10px 20px; /* Add padding for spacing */
+  border-bottom: 1px solid #ddd; /* Light bottom border */
+  background-color: #f8f8f8; /* Light background color */
+}
+
+/* Logo container */
+.logo-container {
+  width: 100px; /* Define a fixed width for the logo */
+}
+
+/* Logo styles */
+.logo {
+  width: 100%;
+  border-radius: 50%; /* Circular logo */
+  object-fit: cover; /* Prevent image distortion */
+}
+
+/* Navigation items */
+.nav-items > ul {
+  display: flex; /* Horizontal alignment */
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigation links */
+.nav-items > ul > li {
+  margin-right: 20px; /* Space between nav links */
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Hover and focus styles for navigation links */
+.nav-items > ul > li:hover,
+.nav-items > ul > li:focus {
+  color: #007bff;
+}
+
+/* ========== BODY STYLES ========== */
+
+/* Body container */
+.body {
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+/* ========== RESTAURANT CARD STYLES ========== */
+
+
+/* Restaurant card container */
+.res-container {
+  display: grid; /* Use CSS Grid for precise control */
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Center align the grid */
+  padding: 20px;
+  margin: 0 auto; /* Center container horizontally */
+  margin-left: 80px;
+}
+
+
+/* Individual restaurant card */
+.res-card {
+  width: 250px;
+  height: 350px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.res-card:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+/* Restaurant image */
+.res-logo {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* Restaurant details */
+.res-card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+  margin: 10px 0;
+}
+
+.res-card h4 {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* ========== SHIMMER STYLES ========== */
+
+/* Shimmer container */
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+/* Shimmer card */
+.shimmer-card {
+  width: 200px;
+  height: 300px;
+  background: linear-gradient(
+      90deg,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+      background-position: 200% 0;
+  }
+  100% {
+      background-position: -200% 0;
+  }
+}
+
+/* ========== SEARCH AND FILTER STYLES ========== */
+
+/* Filter and search container */
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 20px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Search box */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Search input */
+.search-box {
+  width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-box:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Search button */
+.search button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search button:hover {
+  background-color: #0056b3;
+}
+
+/* Filter button */
+.filter-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #218838;
+}
+
+/* ========== LOGIN/LOGOUT BUTTON ========== */
+
+.auth-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.auth-btn:active {
+  background-color: #004085;
+  transform: scale(0.95);
+}
+
+
+/* ========== Restaurant Details ========== */
+
+.resName {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.resName img.restaurant-image {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.resName h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.resName p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.resName p:first-of-type {
+  font-weight: bold;
+}
+
+.resMenu {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+.resMenu h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.resMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-details {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.menu-item-details h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.menu-item-details p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.menu-item-details p.menu-description {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.menu-item img.menu-item-image {
+  flex: 1;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.menu-item .menu-item-details p.menu-price {
+  font-weight: bold;
+}
+
+.menu-item .menu-item-details p.menu-rating {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* ========== About Component ========== */
+
+/* Container Styling */
+.about-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+/* Main Header Styling */
+.about-container h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Sub-header Styling */
+.about-container h3 {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+/* UserClass Component Wrapper */
+.user-wrapper {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+
+/* ========== User Card Container ========== */
+.user-card {
+  max-width: 350px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect */
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile Image */
+.user-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #007bff;
+}
+
+/* Name */
+.user-card h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Location */
+.user-card h4 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Link Styling */
+.user-card h4 a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.user-card h4 a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  .user-card {
+    padding: 15px;
+  }
+
+  .user-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-card h2 {
+    font-size: 20px;
+  }
+
+  .user-card h4 {
+    font-size: 16px;
+  }
+}
